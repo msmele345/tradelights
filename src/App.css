@@ -44,3 +44,26 @@ ul{
 li{
   margin-bottom: 5px;
 }
+
+h3 {
+  font-size: medium;
+  font-style: italic;
+  font-family: Courier;
+  padding-left: 10px;
+}
+
+.create_post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.author_title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: right;
+  font-size: calc(6px + 2vmin);
+}
