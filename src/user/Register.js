@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-export default function Register ( {setUser} ) {
+export default function Register ({ dispatch }) {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -10,14 +10,14 @@ export default function Register ( {setUser} ) {
         setUsername(e.target.value)
     };
     const handlePassword = (e) => {
-        setUsername(e.target.value)
+        setPassword(e.target.value)
     };
     const handlePasswordRepeat = (e) => {
-        setUsername(e.target.value)
+        setPasswordRepeat(e.target.value)
     };
 
     return (
-        <form onSubmit={e => {e.preventDefault(); setUser(username)}}>
+        <form onSubmit={e => {e.preventDefault(); dispatch={ type: 'REGISTER', username } }}>
             <label htmlFor="register-username">Username:</label>
             <input type="text" name="register-username" id="register-username"  value={username} onChange={handleUsername}/>
             <label htmlFor="register-password">Password:</label>

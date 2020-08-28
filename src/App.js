@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {Fragment, useEffect, useReducer, useState} from 'react';
 import './App.css';
-import {Fragment, useState, useEffect} from 'react';
 import axios from 'axios';
 import Loader from 'react-loader-spinner'
 import {SearchResult} from "./components/SearchResult";
 import CreatePost from "./post/CreatePost";
 import PostList from "./post/TradePostList";
 import UserBar from "./user/UserBar";
+import {useAxios2} from "./components/FetchDataService";
+import appReducer from './reducers'
 
 const defaultPosts = [
     {title: "Killer Trade on SPY", content: "BUY 200 SPY @ $210.00", author: "Mitch Mele"},
@@ -14,15 +15,20 @@ const defaultPosts = [
     {title: "Killer Trade on AAPL", content: "BUY 50 AAPL @ $333.00", author: "Mitch Mele"}
 ];
 
+const userR = {type: 'LOGIN', username: 'Mitch Mele', password: 'notsecure'};
+const userRegister = {type: 'REGISTER', username: 'Mitch Mele', password: 'notsecure', passwordRepeat: 'notsecure'};
+
 function App() {
 
     const [data, setData] = useState([]);
     const [query, setQuery] = useState('');
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [user, setUser] = useState('');
-    const [posts, setPosts] = useState(defaultPosts);
+    // const [user, setUser] = useState('');
+    // const [posts, setPosts] = useState(defaultPosts);
 
+    const [ state, dispatch ] = useReducer(appReducer, { user: '', posts: defaultPosts })
+    const { user, posts } = state
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,12 +43,14 @@ function App() {
 
     }, [search]);
 
+    // useAxios2(query, setData, setIsLoading, search);
+
 
     return (
         <div style={{padding: 8}}>
-            <UserBar user={user} setUser={setUser}/>
+            <UserBar user={user} dispatch={dispatch}/>
             <br/>
-            {user && <CreatePost user={user} posts={posts} setPosts={setPosts}/>}
+            {user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
             <br/>
             <hr/>
             <PostList posts={posts}/>

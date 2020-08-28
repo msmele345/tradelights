@@ -1,14 +1,12 @@
 import React from 'react';
-import { useAxios } from "./components/FetchDataService";
+import { useAxios } from "../components/FetchDataService";
 import { render, cleanup, waitForElement } from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect";
 import axiosMock from "axios";
-import App from "./App";
-// import axios from "../__mocks__/axios";
+import App from "../App";
 
 afterEach(cleanup);
 
-//need mock
 jest.mock("axios");
 describe('useAxios ', () => {
 
@@ -60,11 +58,3 @@ describe('App ', () => {
         expect(expectedResolvedValue[0]).toHaveTextContent("BUY 200 SPY @ $210.00");
     });
 });
-
-/*
-*
-*         const wrapper = shallow(<App/>)
-*         const result = wrapper.find(SearchResult)
-        expect(result).to.contain("ABC")
-*
-* */

@@ -1,6 +1,6 @@
 import React from "react";
 import mockAxios from "axios"
-import {useAxios} from "./FetchDataService";
+import {useAxios} from "../components/FetchDataService";
 
 describe("api calls", () => {
 
