@@ -1,38 +1,9 @@
 import React from 'react';
-import { useAxios } from "../components/FetchDataService";
-import { render, cleanup, waitForElement } from "@testing-library/react"
+import {cleanup, render, waitForElement} from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect";
 import axiosMock from "axios";
 import App from "../App";
 
-afterEach(cleanup);
-
-jest.mock("axios");
-describe('useAxios ', () => {
-
-    it("handles a successful response", async () => {
-        //ensure its the mock by using alias
-        axiosMock.get.mockResolvedValueOnce(
-            {trades: [{id: 1, symbol: "ABC", tradePrice: 81.00}]}
-            )
-
-        const response = await useAxios("ABC")
-        expect(axiosMock.get).toHaveBeenCalledTimes(1);
-        expect(axiosMock.get).toHaveBeenCalledWith(
-             'http://localhost:8080/api/v1/trades/ABC'
-         );
-        //must await or it will be undefined!
-        const expected = {trades: [{id: 1, symbol: "ABC", tradePrice: 81.00}]};
-        await expect(response).toEqual(expected)
-    });
-
-    it('handles unsuccessful response', async () => {
-        const errorMessage = "bad response"
-
-        axiosMock.get.mockReturnValue(Promise.reject(new Error(errorMessage)))
-        await expect(useAxios("ABC")).rejects.toThrow(errorMessage)
-    });
-});
 
 describe('App ', () => {
 
@@ -56,5 +27,18 @@ describe('App ', () => {
 
         const expectedResolvedValue = await waitForElement(() => getAllByRole("post-content"));
         expect(expectedResolvedValue[0]).toHaveTextContent("BUY 200 SPY @ $210.00");
+    });
+
+    it("renders error if server response is not a 200", async () => {
+
+        const serverError = "server error";
+
+        axiosMock.get.mockReturnValueOnce(Promise.reject(new Error(serverError)));
+
+        const { getByTestId } = render(<App />)
+
+        const actual = await waitForElement(() => getByTestId("errors"));
+
+        expect(actual).toHaveTextContent("server error");
     });
 });

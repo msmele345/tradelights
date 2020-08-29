@@ -3,21 +3,31 @@ import axios from 'axios';
 
 export const useAxios = async (query) => {
     const queryUrl = `http://localhost:8080/api/v1/trades/${query}`
-     return await axios.get(queryUrl)
+
+    let response;
+    try {
+        response = await axios.get(queryUrl)
+    } catch (e) {
+        response = {error: e.error || e.message}
+    }
+    return response;
 }
 
-export const useAxios2 = async (query, setData, setIsLoading, search) => {
+export const useAxios2 = async (setData, setIsLoading, search, setErrorMessage) => {
     useEffect(
         () => {
             const fetchData = async () => {
                 setIsLoading(true)
-                const result = await axios.get(
+                axios.get(
                     `http://localhost:8080/api/v1/trades/${search}`,
-                )
-                setData(result.data);
+                    )
+                    .then(response => setData(response.data))
+                    .catch(e => {
+                        console.log(e.message)
+                        setErrorMessage(e.message)
+                    })
                 setIsLoading(false)
             }
             fetchData();
-
         }, [search]);
 }

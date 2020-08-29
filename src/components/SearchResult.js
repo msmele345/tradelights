@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-export const SearchResult = ({symbolForDisplay, data}) => {
+export const SearchResult = ({ symbolForDisplay, data }) => {
     const renderHeader = () => {
         const symbol = symbolForDisplay === undefined || symbolForDisplay === '' ? "All Trades" : symbolForDisplay
         return (
