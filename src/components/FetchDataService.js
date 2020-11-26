@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import axios from 'axios';
 
-export const useAxios = async (query) => {
+export const getTradeData = async (query) => {
     const queryUrl = `http://localhost:8080/api/v1/trades/${query}`
 
     let response;
@@ -13,17 +13,17 @@ export const useAxios = async (query) => {
     return response;
 }
 
-export const useAxios2 = async (setData, setIsLoading, search, setErrorMessage) => {
+export const useAxios = async (setData, setIsLoading, search, setErrorMessage) => {
     useEffect(
         () => {
             const fetchData = async () => {
                 setIsLoading(true)
                 axios.get(
-                    `http://localhost:8080/api/v1/trades/${search}`,
+                    `http://localhost:8085/api/v1/trades/${search}`,
                     )
                     .then(response => setData(response.data))
                     .catch(e => {
-                        console.log(e.message)
+                        console.log(" ERROR " + e.message)
                         setErrorMessage(e.message)
                     })
                 setIsLoading(false)
@@ -31,3 +31,8 @@ export const useAxios2 = async (setData, setIsLoading, search, setErrorMessage) 
             fetchData();
         }, [search]);
 }
+
+//run lumper and seeker to load trades into sql!
+//setup new registration form that posts to o lounge
+//create user with form and provide access through security
+//show an option on the screen

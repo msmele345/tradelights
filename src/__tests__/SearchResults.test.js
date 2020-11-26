@@ -1,6 +1,6 @@
 import React from 'react';
-import {render} from '@testing-library/react'
-import {SearchResult} from "./SearchResult";
+import { render } from '@testing-library/react'
+import { SearchResult } from "../components/SearchResult";
 
 
 describe('Search ', () => {

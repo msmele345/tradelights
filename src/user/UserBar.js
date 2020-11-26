@@ -12,6 +12,7 @@ export default function UserBar ({user, dispatch}) {
         return (
             <React.Fragment>
                 <Login dispatch={dispatch} />
+                <br/>
                 <Register dispatch={dispatch}/>
             </React.Fragment>
         )
