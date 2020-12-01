@@ -13,6 +13,26 @@ export const getTradeData = async (query) => {
     return response;
 }
 
+
+export const postRegistrationData = async (username, password, email) => {
+    const queryUrl = `http://localhost:8081/api/v1/users`;
+
+    const requestBody = {
+        username: username,
+        password: password,
+        email: email
+    }
+
+    let response;
+    try {
+        response = await axios.post(queryUrl, requestBody)
+    } catch (e) {
+        console.log({e})
+        response = {error: e.error || e.message}
+    }
+    return response;
+}
+
 export const useAxios = async (setData, setIsLoading, search, setErrorMessage) => {
     useEffect(
         () => {
@@ -31,8 +51,4 @@ export const useAxios = async (setData, setIsLoading, search, setErrorMessage) =
             fetchData();
         }, [search]);
 }
-
-//run lumper and seeker to load trades into sql!
-//setup new registration form that posts to o lounge
-//create user with form and provide access through security
 //show an option on the screen

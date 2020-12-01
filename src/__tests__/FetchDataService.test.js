@@ -1,6 +1,6 @@
 import React from "react";
 import mockAxios from "axios"
-import { useAxios } from "../components/FetchDataService";
+import {postRegistrationData, useAxios} from "../components/FetchDataService";
 
 describe("api calls", () => {
 
@@ -30,6 +30,34 @@ describe("api calls", () => {
         const expected = {error: serverError}
         const actual = await useAxios("ABC")
         expect(actual).toEqual(expected)
+    });
+
+    it("postRegistrationData - submits post to backend with correct user data", async () => {
+
+        let registrationUrl = "http://localhost:8081/api/v1/users";
+
+        const requestBody = {
+            username: "mm",
+            password: "mm23",
+            email: "mm@google.com"
+        }
+        mockAxios.post.mockReturnValue({});
+
+        //usually, you have to use rejects or resolves anytime you return a promise from mock
+        await postRegistrationData("mm", "mm23", "mm@google.com")
+        expect(mockAxios.post).toHaveBeenCalledWith(registrationUrl, requestBody)
+    });
+
+    it("postRegistrationData - returns Error if there is an issue with the server", async () => {
+
+        const serverError = "server error";
+
+        mockAxios.post.mockReturnValue(Promise.reject(new Error(serverError)));
+        const expected = {"error": "server error"};
+
+        //usually, you have to use rejects or resolves anytime you return a promise from mock
+        const actual = await postRegistrationData("mm", "mm23", "mm@google.com")
+        expect(actual).toEqual(expected);
     });
 });
 

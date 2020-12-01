@@ -4,17 +4,12 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner'
 import {SearchResult} from "./components/SearchResult";
 import CreatePost from "./post/CreatePost";
-import PostList from "./post/TradePostList";
 import UserBar from "./user/UserBar";
 import appReducer from './reducers'
 import {ServerError} from "./components/ServerError";
 import {useAxios} from "./components/FetchDataService";
+import LandingPage from "./components/LandingPage";
 
-const defaultPosts = [
-    {title: "Killer Trade on SPY", content: "BUY 200 SPY @ $210.00", author: "Mitch Mele"},
-    {title: "Killer Trade on MSFT", content: "BUY 10 MSFT @ $121.00", author: "Mitch Mele"},
-    {title: "Killer Trade on AAPL", content: "BUY 50 AAPL @ $333.00", author: "Mitch Mele"}
-];
 
 function App() {
 
@@ -26,45 +21,12 @@ function App() {
     // const [user, setUser] = useState('');
     // const [posts, setPosts] = useState(defaultPosts);
 
-    const [state, dispatch] = useReducer(appReducer, {user: '', posts: defaultPosts})
-    const {user, posts} = state
-
-    useEffect(() => {
-        if (user) {
-            document.title = `${user} - TradeLights Blog`
-        } else {
-            document.title = "TradeLights Blog"
-        }
-    });
-
-    const renderErrors = () => {
-        if (errorMessage !== '') {
-            return (<div><ServerError errorMessage={errorMessage}/></div>)
-        }
-    };
-
-    useAxios(setData, setIsLoading, search, setErrorMessage);
+    const [state, dispatch] = useReducer(appReducer, {user: ''})
+    const {user} = state
 
     return (
         <div style={{padding: 8}}>
-            <UserBar user={user} dispatch={dispatch}/>
-            <br/>
-            <br/>
-            {user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
-            <br/>
-            <hr/>
-            {renderErrors()}
-            <PostList posts={posts}/>
-            <Fragment>
-                <div className="form-group">
-                    <input placeholder={"Symbol i.e..ABC"} type="text" value={query} onChange={event => setQuery(event.target.value)}/>
-                </div>
-                <button type="button" onClick={() => setSearch(query)}>Search</button>
-                {!isLoading
-                    ? <SearchResult data-testid="resolved" data={data} symbolForDisplay={query}/>
-                    : (<Loader data-testid="loading" type="Puff" color="#00BFFF" height={300} width={100} timeout={3000}/>)
-                }
-            </Fragment>
+            <LandingPage/>
         </div>
     );
 }

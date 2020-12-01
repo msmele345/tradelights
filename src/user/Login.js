@@ -16,5 +16,6 @@ export default function Login ( { dispatch }) {
             <input type="password" name="login-password" id="login-password" />
             <input type="submit" value="Login" disabled={username.length === 0}/>
         </form>
+
     )
 }

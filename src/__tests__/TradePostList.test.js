@@ -1,7 +1,7 @@
 import React from 'react';
 import {render, screen} from "@testing-library/react"
 import "@testing-library/jest-dom/extend-expect";
-import TradePostList from "../post/TradePostList";
+import TradePostList from "../post/";
 
 
 it("renders a list of posts", () => {
