@@ -1,12 +1,13 @@
 import React, {useEffect} from "react";
 import axios from 'axios';
+import {GET_OPTIONS_URL} from "../constants/UrlConstants";
 
-export const getTradeData = async (query) => {
-    const queryUrl = `http://localhost:8080/api/v1/trades/${query}`
+export const getOptionsData = async (query) => {
+    // const queryUrl = `http://localhost:8081/options/${query}`
 
     let response;
     try {
-        response = await axios.get(queryUrl)
+        response = await axios.get(GET_OPTIONS_URL)
     } catch (e) {
         response = {error: e.error || e.message}
     }

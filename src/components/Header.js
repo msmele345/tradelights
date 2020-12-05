@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React, {Component} from "react";
+import {BrowserRouter as Router, NavLink} from "react-router-dom";
 
 class Header extends Component {
     active = {
         fontWeight: "bold",
-        color: "red"
+        color: "white"
     };
 
     header = {
@@ -14,10 +14,15 @@ class Header extends Component {
         color: "white"
 
     };
+
     render() {
         return (
             <div style={this.header} className={"header"}>
-                <NavLink exact to="/trades"  activeStyle={this.active}>
+
+                <NavLink exact to="/" activeStyle={this.active}>
+                    Home
+                </NavLink>
+                <NavLink exact to="/trades" activeStyle={this.active}>
                     Trades
                 </NavLink>
                 <NavLink to="/options" activeStyle={this.active}>

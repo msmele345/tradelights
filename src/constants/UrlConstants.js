@@ -1,0 +1,1 @@
+export const GET_OPTIONS_URL = `http://localhost:8081/options`

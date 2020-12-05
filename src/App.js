@@ -1,33 +1,32 @@
-import React, {Fragment, useEffect, useReducer, useState} from 'react';
+import React, {useEffect, useReducer} from 'react';
 import './App.css';
-import axios from 'axios';
-import Loader from 'react-loader-spinner'
-import {SearchResult} from "./components/SearchResult";
-import CreatePost from "./post/CreatePost";
-import UserBar from "./user/UserBar";
 import appReducer from './reducers'
-import {ServerError} from "./components/ServerError";
-import {useAxios} from "./components/FetchDataService";
 import LandingPage from "./components/LandingPage";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 
 function App() {
 
-    const [data, setData] = useState([]);
-    const [query, setQuery] = useState('');
-    const [search, setSearch] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
-    // const [user, setUser] = useState('');
-    // const [posts, setPosts] = useState(defaultPosts);
-
     const [state, dispatch] = useReducer(appReducer, {user: ''})
-    const {user} = state
+    const { user } = state
+
+    useEffect(() => {
+        if (user) {
+            document.title = `${user} - TradeLights`
+        } else {
+            document.title = "TradeLights"
+        }
+    });
+
+    const theme = createMuiTheme({palette: {type: "dark"}});
 
     return (
-        <div style={{padding: 8}}>
-            <LandingPage/>
-        </div>
+        <ThemeProvider theme={theme}>
+            <div>
+                <h2 className={"banner"}>WELCOME TO THE OLOUNGE</h2>
+                <LandingPage/>
+            </div>
+        </ThemeProvider>
     );
 }
 

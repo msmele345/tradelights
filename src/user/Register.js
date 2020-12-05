@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
-import {useForm} from "react-hook-form";
-import {postRegistrationData} from "../components/FetchDataService";
+import React, { useState } from 'react'
+import { useForm } from "react-hook-form";
+import { postRegistrationData } from "../components/FetchDataService";
 import {
     TextField,
     Select,
@@ -14,14 +14,13 @@ import {
 } from "@material-ui/core";
 import {Link} from "react-router-dom";
 import {ServerError} from "../components/ServerError";
+import { renderErrors } from "../constants/Utils";
 
 const Register = props => {
 
     const { register, errors, handleSubmit } = useForm();
     const [errorMessage, setErrorMessage] = useState('');
     // const [userDetails, setUserDetails] = useState("");
-
-    const renderErrors = () => {if (errorMessage !== '') return (<div><ServerError errorMessage={errorMessage}/></div>)};
 
     const onSubmit = async (data) => {
         console.log("DATA FROM FORM BEING SENT TO SERVER: " + data);
@@ -36,33 +35,28 @@ const Register = props => {
 
     //save user details on hook and set dispatch? or display info on ui header like name
 
-    const theme = createMuiTheme({palette: {type: "dark"}});
-
     return (
-        <ThemeProvider theme={theme}>
-            {/*<div>{renderErrors()}</div>*/}
-            <div className={"container"} id={"registerForm"}>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    {renderErrors()}
-                    <section>
-                        <label htmlFor="register-username">Username:</label>
-                        <input name="username" ref={register({required: true})}/>
-                        {errors.username && "A username is required"}
-                    </section>
-                    <section>
-                        <label htmlFor="register-password">Password:</label>
-                        <input name="password" ref={register({required: true})}/>
-                        {errors.password && "A password is required"}
-                    </section>
-                    <section>
-                        <label htmlFor="register-password">Email:</label>
-                        <input name="email" ref={register({required: true})}/>
-                        {errors.password && "An email is required"}
-                    </section>
-                    <input type="submit" value="Register"/>
-                </form>
-            </div>
-        </ThemeProvider>
+        <div className={"container"} id={"registerForm"}>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {renderErrors(errorMessage)}
+                <section>
+                    <label htmlFor="register-username">Username:</label>
+                    <input name="username" ref={register({required: true})}/>
+                    {errors.username && "A username is required"}
+                </section>
+                <section>
+                    <label htmlFor="register-password">Password:</label>
+                    <input name="password" ref={register({required: true})}/>
+                    {errors.password && "A password is required"}
+                </section>
+                <section>
+                    <label htmlFor="register-email">Email:</label>
+                    <input name="email" ref={register({required: true})}/>
+                    {errors.email && "An email is required"}
+                </section>
+                <input type="submit" value="Register"/>
+            </form>
+        </div>
     )
 }
 

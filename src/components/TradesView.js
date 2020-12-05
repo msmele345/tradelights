@@ -6,7 +6,8 @@ import PostList from "../post/PostList";
 import {SearchResult} from "./SearchResult";
 import Loader from "react-loader-spinner";
 import {ServerError} from "./ServerError";
-import {useAxios} from "./FetchDataService";
+import { useAxios } from "./FetchDataService";
+import { renderErrors } from "../constants/Utils";
 
 const SERVER_URL = `http://localhost:8085/api/v1/trades/`
 
@@ -16,45 +17,30 @@ export const TradeView = () => {
     const [query, setQuery] = useState('');
     const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
     const [errorMessage, setErrorMessage] = useState('');
 
     const [state, dispatch] = useReducer(appReducer, {user: '', posts: defaultPosts})
-    const {user, posts} = state
-
-    const renderErrors = () => {if (errorMessage !== '') return (<div><ServerError errorMessage={errorMessage}/></div>)};
-
-    useEffect(() => {
-        if (user) {
-            document.title = `${user} - TradeLights Blog`
-        } else {
-            document.title = "TradeLights Blog"
-        }
-    });
+    const { user, posts } = state
 
     useAxios(setData, setIsLoading, search, setErrorMessage, SERVER_URL);
 
     return (
-        <div>
+        <div className={"tradeView"}>
             {/*<UserBar user={user} dispatch={dispatch}/>*/}
-            <br/>
-            <br/>
-            {user && <CreatePost user={user} posts={posts} dispatch={dispatch}/>}
-            <br/>
-            <hr/>
-            {renderErrors()}
-            <PostList posts={posts}/>
-            <Fragment>
-                <div className="form-group">
+            {renderErrors(errorMessage)}
+            <form>
+                <section>
                     <input placeholder={"Symbol i.e..ABC"} type="text" value={query}
-                           onChange={event => setQuery(event.target.value)}/>
-                </div>
-                <button type="button" onClick={() => setSearch(query)}>Search</button>
+                           onChange={event => setQuery(event.target.value)} className={"tradeSymbol"}/>
+                    <button type="button" onClick={() => setSearch(query)} className={"tradeButton"}>Search</button>
+                </section>
                 {!isLoading
                     ? <SearchResult data-testid="resolved" data={data} symbolForDisplay={query}/>
                     : (<Loader data-testid="loading" type="Puff" color="#00BFFF" height={300} width={100}
                                timeout={3000}/>)
                 }
-            </Fragment>
+            </form>
         </div>
     )
 }
