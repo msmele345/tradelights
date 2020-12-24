@@ -1,23 +1,29 @@
 import React, {useState} from "react";
 import Loader from "react-loader-spinner";
 import {useForm} from "react-hook-form";
-import {getOptionsData} from "./FetchDataService";
+import {getOptionsData, postOptionsData} from "./FetchDataService";
 import {renderErrors} from "../constants/Utils";
 import {OptionsChain} from "./OptionChain";
 
 export const OptionsView = () => {
 
     const [data, setData] = useState([]);
-    const [query, setQuery] = useState('');
-    const [search, setSearch] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const {register, errors, handleSubmit} = useForm();
+    const { register, errors, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
-        console.log("TYPE: " + data.type); //triggers getAllOptions to start
+
         setIsLoading(true)
-        const response = await getOptionsData('')
+
+        const { type, symbol } = data
+
+        const optionsData = {
+            type: type === "ALL" ? '' : type,
+            symbol: symbol
+        }
+
+        const response = await postOptionsData(optionsData)
 
         if (!response.error) {
             setIsLoading(false)
@@ -26,9 +32,6 @@ export const OptionsView = () => {
             setIsLoading(false)
             setErrorMessage(response.error || response.message)
         }
-        //use radio select to build url for options server. URi builder to include type param if present
-        //depending on whats on the form like a symbol or type, setup axios calls to server for data
-        //radio button to select calls or puts then use selection to build query string with type?=PUT
     }
 
     return (

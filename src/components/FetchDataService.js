@@ -1,13 +1,29 @@
 import React, {useEffect} from "react";
 import axios from 'axios';
-import {GET_OPTIONS_URL} from "../constants/UrlConstants";
+import {OPTIONS_URL} from "../constants/UrlConstants";
 
-export const getOptionsData = async (query) => {
-    // const queryUrl = `http://localhost:8081/options/${query}`
+export const getOptionsData = async (queryData) => {
 
     let response;
+
     try {
-        response = await axios.get(GET_OPTIONS_URL)
+        if (queryData === '' || queryData === undefined || queryData === null) {
+            response = await axios.get(OPTIONS_URL)
+        } else {
+            response = await axios.get(OPTIONS_URL + `?type=${queryData}`)
+        }
+    } catch (e) {
+        response = {error: e.error || e.message}
+    }
+    return response;
+}
+
+export const postOptionsData = async (queryData) => {
+
+    let response;
+
+    try {
+        response = await axios.post(OPTIONS_URL, queryData)
     } catch (e) {
         response = {error: e.error || e.message}
     }
@@ -40,8 +56,8 @@ export const useAxios = async (setData, setIsLoading, search, setErrorMessage) =
             const fetchData = async () => {
                 setIsLoading(true)
                 axios.get(
-                    `http://localhost:8085/api/v1/trades/${search}`,
-                    )
+                    `http://localhost:8081/api/v1/trades/${search}`,
+                )
                     .then(response => setData(response.data))
                     .catch(e => {
                         console.log(" ERROR " + e.message)

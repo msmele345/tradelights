@@ -3,17 +3,17 @@ import PostList from "../post/PostList";
 import appReducer from "../reducers";
 import CreatePost from "../post/CreatePost";
 
-
-export const HomeView = () => {
+export const HomeView = props => {
 
     const [state, dispatch] = useReducer(appReducer, {posts: DEFAULT_POSTS})
     const {posts} = state
 
+    const {username} = (props.location && props.location.userDetails) || {};
 
     return (
         <div className={".homeContainer"}>
-            <CreatePost posts={posts} dispatch={dispatch}/>
-            <PostList posts={posts}/>
+            <CreatePost posts={posts} user={!username ? '' : username} dispatch={dispatch}/>
+            <PostList posts={posts} />
         </div>
     );
 }

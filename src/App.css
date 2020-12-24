@@ -161,14 +161,40 @@ input[type="submit"],
     width: 75%;
 }
 
+
+.tradesForm {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .tradeView {
+    display: block;
+    padding-top: 20px;
+    margin-left: 225px;
+    margin-top: 100px;
+    width: 175%;
+}
+
+.tables {
+    /*font-size: 28px;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*text-align: center;*/
+}
+
+.register {
     display: block;
     padding-top: 20px;
     width: 75%;
     margin-left: 500px;
     margin-top: 100px;
 }
-
 
 .buttonBlack {
     background: black;
@@ -178,6 +204,11 @@ input[type="submit"],
 .App {
     max-width: 600px;
     margin: 0 auto;
+}
+
+#errorContainer {
+    color: #bf1650;
+    font-size: 20px;
 }
 
 /*.container {*/
@@ -209,6 +240,14 @@ input[type="submit"],
     padding-bottom: 10px;
 }
 
+.homeContainer {
+    display: block;
+    padding-top: 20px;
+    width: 75%;
+    margin-left: 500px;
+    margin-top: 100px;
+}
+
 .optionChain {
     height: 375px;
     width: 900px;
@@ -216,8 +255,11 @@ input[type="submit"],
 }
 
 .loginForm {
-    padding-top: 20px;
-    margin-left: 20px;
+    display: block;
+    padding-top: 5px;
+    width: 75%;
+    margin-left: 500px;
+    margin-top: 100px;
 }
 
 .banner {

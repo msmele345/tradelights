@@ -1,44 +1,47 @@
-import React, { useState } from 'react'
-import { useForm } from "react-hook-form";
-import { postRegistrationData } from "../components/FetchDataService";
-import {
-    TextField,
-    Select,
-    MenuItem,
-    Switch,
-    FormControlLabel,
-    ThemeProvider,
-    Radio,
-    createMuiTheme,
-    Slider
-} from "@material-ui/core";
-import {Link} from "react-router-dom";
+import React, {useReducer, useState} from 'react'
+import {useForm} from "react-hook-form";
+import {postRegistrationData} from "../components/FetchDataService";
+import {HOME_PATH} from "../constants/ViewConstants";
+import appReducer from "../reducers";
 import {ServerError} from "../components/ServerError";
-import { renderErrors } from "../constants/Utils";
 
 const Register = props => {
 
-    const { register, errors, handleSubmit } = useForm();
     const [errorMessage, setErrorMessage] = useState('');
-    // const [userDetails, setUserDetails] = useState("");
+    const {register, errors, handleSubmit} = useForm();
+
+    const [state, dispatch] = useReducer(appReducer, {user: ''});
+
+    const {user} = state
+
+    const renderErrors = () => {
+        if (errorMessage !== '')
+            return (
+                <div id={"errorContainer"}><ServerError errorMessage={errorMessage}/></div>
+            )
+    };
 
     const onSubmit = async (data) => {
-        console.log("DATA FROM FORM BEING SENT TO SERVER: " + data);
+
         const response = await postRegistrationData(data.username, data.password, data.email);
+        let username = data.username;
 
         if (response.error) {
             setErrorMessage(response.error || response.message)
         } else {
-            props.history.push("/") //send
+            // props.history.push(HOME_PATH)
+            dispatch({type: 'REGISTER', username})
+            props.history.push({
+                pathname: HOME_PATH,
+                userDetails: {username: data.username}
+            });
         }
     }
 
-    //save user details on hook and set dispatch? or display info on ui header like name
-
     return (
-        <div className={"container"} id={"registerForm"}>
+        <div className={"register"}>
+            {renderErrors()}
             <form onSubmit={handleSubmit(onSubmit)}>
-                {renderErrors(errorMessage)}
                 <section>
                     <label htmlFor="register-username">Username:</label>
                     <input name="username" ref={register({required: true})}/>
@@ -63,9 +66,6 @@ const Register = props => {
 export default Register;
 
 
-//wait for success?
-//navigate to trades or another welcome page? Welcome page could have links or tabs to options and trades..
-//use
 /*<div>
     <Link to="/">Landing Page</Link>
     <Link to="/editproject">Edit Project</Link>

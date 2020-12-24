@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export default function Login({ dispatch }) {
+export default function Login({dispatch}) {
 
     //
     // const { register, errors, handleSubmit } = useForm();
@@ -12,16 +12,20 @@ export default function Login({ dispatch }) {
     };
 
     return (
-        <div className={"container"}>
+        <div>
             <form className={"loginForm"} onSubmit={e => {
                 e.preventDefault();
                 dispatch({type: 'LOGIN', username})
             }}>
-                <label htmlFor="login-username">Username:</label>
-                <input type="text" name="login-username" id="login-username" value={username}
-                       onChange={handleUsername}/>
-                <label htmlFor="login-password">Password:</label>
-                <input type="password" name="login-password" id="login-password"/>
+                <section>
+                    <label htmlFor="login-username">Username:</label>
+                    <input type="text" name="login-username" id="login-username" value={username}
+                           onChange={handleUsername}/>
+                </section>
+                <section>
+                    <label htmlFor="login-password">Password:</label>
+                    <input type="password" name="login-password" id="login-password"/>
+                </section>
                 <input type="submit" value="Login" disabled={username.length === 0}/>
             </form>
         </div>

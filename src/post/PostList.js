@@ -2,7 +2,8 @@ import React from 'react'
 
 import TradePost from './TradePost'
 
-export default function PostList ({ posts = [] }) {
+export default function PostList ({ posts = []}) {
+
     return (
         <div>
             {posts.map((p, i) => (

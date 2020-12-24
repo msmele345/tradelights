@@ -10,12 +10,12 @@ export default function CreatePost({user, posts, dispatch}) {
     const handleContent = (e) => setContent(e.target.value);
 
 
-    // const handleCreate = () => {
-    //     const newPost = {title, content, author: user}
-    //     setPosts([newPost, ...posts])
-    // };
-
-    //update form wand add header
+    const showUser = () => {
+        if(!user) return;
+        return (
+            <h3>{user}</h3>
+        )
+    }
 
     const handleCreate = () => {
         dispatch({type: 'CREATE_POST', title, content, author: user})
@@ -25,6 +25,7 @@ export default function CreatePost({user, posts, dispatch}) {
         <form onSubmit={e => {e.preventDefault(); handleCreate()}}>
             <div>
                 <h2>WHATS YOUR PLAY OF THE DAY?</h2>
+                {showUser()}
                 <label htmlFor="create-title">Title:</label>
                 <input type="text" value={title} onChange={handleTitle} name="create-title" id="create-title"/>
             </div>

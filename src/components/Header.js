@@ -1,7 +1,8 @@
 import React, {Component} from "react";
-import {BrowserRouter as Router, NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 class Header extends Component {
+
     active = {
         fontWeight: "bold",
         color: "white"
@@ -23,7 +24,7 @@ class Header extends Component {
                     Home
                 </NavLink>
                 <NavLink exact to="/trades" activeStyle={this.active}>
-                    Trades
+                    Stocks
                 </NavLink>
                 <NavLink to="/options" activeStyle={this.active}>
                     Options
