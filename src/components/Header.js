@@ -24,6 +24,9 @@ class Header extends Component {
                     Home
                 </NavLink>
                 <NavLink exact to="/trades" activeStyle={this.active}>
+                    Trades
+                </NavLink>
+                <NavLink exact to="/stocks" activeStyle={this.active}>
                     Stocks
                 </NavLink>
                 <NavLink to="/options" activeStyle={this.active}>

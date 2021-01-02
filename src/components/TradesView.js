@@ -1,6 +1,6 @@
 import React, {useReducer, useState} from "react";
 import appReducer from "../reducers";
-import {StockSearchResult} from "./StockSearchResult";
+import {TradesSearchResult} from "./TradesSearchResult";
 import Loader from "react-loader-spinner";
 import {useAxios} from "./FetchDataService";
 import {TRADES_URL} from "../constants/UrlConstants"
@@ -39,7 +39,7 @@ export const TradeView = () => {
                     <button type="button" onClick={() => setSearch(query)} className={"tradeButton"}>Search</button>
                 </section>
                 {!isLoading
-                    ? <StockSearchResult data-testid="resolved" data={data} symbolForDisplay={query}/>
+                    ? <TradesSearchResult data-testid="resolved" data={data} symbolForDisplay={query}/>
                     : (<Loader data-testid="loading" type="Puff" color="#00BFFF" height={300} width={100}
                                timeout={3000}/>)
                 }
@@ -47,3 +47,5 @@ export const TradeView = () => {
         </div>
     )
 };
+
+//		865557683

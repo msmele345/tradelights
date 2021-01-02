@@ -1,8 +1,7 @@
 import React from 'react';
 import MaterialTable from "material-table";
-import {DataGrid} from "@material-ui/data-grid";
 
-export const StockSearchResult = ({symbolForDisplay, data}) => {
+export const TradesSearchResult = ({symbolForDisplay, data}) => {
 
     const columns = [
         {title: 'Trade Id', field: '_id'},
@@ -31,7 +30,7 @@ export const StockSearchResult = ({symbolForDisplay, data}) => {
     }
 
     return (
-        <div className={"tables"}>
+        <div className={"trade-table"}>
             {renderHeader()}
             <MaterialTable title={"Recent Trades"} data={data} columns={columns}/>
         </div>

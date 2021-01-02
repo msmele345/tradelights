@@ -31,10 +31,7 @@ const Register = props => {
         } else {
             // props.history.push(HOME_PATH)
             dispatch({type: 'REGISTER', username})
-            props.history.push({
-                pathname: HOME_PATH,
-                userDetails: {username: data.username}
-            });
+            props.history.push({ pathname: HOME_PATH, userDetails: {username: data.username} });
         }
     }
 

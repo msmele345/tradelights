@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme'
-import { StockSearchResult } from "../components/StockSearchResult";
+import { TradesSearchResult } from "../components/TradesSearchResult";
 import MaterialTable, {MTableCell} from "material-table";
 
 
@@ -39,7 +39,7 @@ describe('Search ', () => {
 
     it('should render the Trades Correctly', () => {
 
-        wrapper = mount(<StockSearchResult data={trades} symbolForDisplay={"JDS"}/>)
+        wrapper = mount(<TradesSearchResult data={trades} symbolForDisplay={"JDS"}/>)
 
 
         const table = wrapper.find(MaterialTable);

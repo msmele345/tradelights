@@ -13,9 +13,6 @@ export const OptionsView = () => {
     const { register, errors, handleSubmit } = useForm();
 
     const onSubmit = async (data) => {
-
-        setIsLoading(true)
-
         const { type, symbol } = data
 
         const optionsData = {
@@ -24,6 +21,7 @@ export const OptionsView = () => {
         }
 
         const response = await postOptionsData(optionsData)
+        setIsLoading(true)
 
         if (!response.error) {
             setIsLoading(false)

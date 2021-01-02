@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import axios from 'axios';
-import {OPTIONS_URL} from "../constants/UrlConstants";
+import {OPTIONS_URL, STOCK_DETAILS_URL} from "../constants/UrlConstants";
 
 export const getOptionsData = async (queryData) => {
 
@@ -24,6 +24,18 @@ export const postOptionsData = async (queryData) => {
 
     try {
         response = await axios.post(OPTIONS_URL, queryData)
+    } catch (e) {
+        response = {error: e.error || e.message}
+    }
+    return response;
+}
+
+export const getStockDetails = async (symbol) => {
+
+    let response;
+
+    try {
+        response = await axios.get(STOCK_DETAILS_URL + `?symbol=${symbol}`)
     } catch (e) {
         response = {error: e.error || e.message}
     }

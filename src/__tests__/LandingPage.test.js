@@ -7,6 +7,7 @@ import Login from "../user/Login";
 import {TradeView} from "../components/TradesView";
 import {OptionsView} from "../components/OptionsView";
 import {HomeView} from "../components/HomeView";
+import {StockDetailView} from "../components/StockDetailView";
 
 describe('LandingPage ', () => {
 
@@ -19,14 +20,14 @@ describe('LandingPage ', () => {
 
         expect(div.find(".container").length).toEqual(1);
         expect(div.find(Switch).length).toEqual(1);
-        expect(div.find(Switch).children().length).toEqual(6);
+        expect(div.find(Switch).children().length).toEqual(7);
 
 
         expect(div.find(Switch).childAt(0).props().path).toEqual("/");
-        expect(div.find(Switch).childAt(0).props().component).toEqual(Register);
+        expect(div.find(Switch).childAt(0).props().component).toEqual(HomeView);
 
-        expect(div.find(Switch).childAt(1).props().path).toEqual("/home");
-        expect(div.find(Switch).childAt(1).props().component).toEqual(HomeView);
+        expect(div.find(Switch).childAt(1).props().path).toEqual("/register");
+        expect(div.find(Switch).childAt(1).props().component).toEqual(Register);
 
         expect(div.find(Switch).childAt(2).props().path).toEqual("/login");
         expect(div.find(Switch).childAt(2).props().component).toEqual(Login);
@@ -38,6 +39,9 @@ describe('LandingPage ', () => {
         expect(div.find(Switch).childAt(4).props().path).toEqual("/options");
         expect(div.find(Switch).childAt(4).props().component).toEqual(OptionsView);
 
-        expect(div.find(Switch).childAt(5).props().component).toEqual(NoMatch);
+        expect(div.find(Switch).childAt(5).props().path).toEqual("/stocks");
+        expect(div.find(Switch).childAt(5).props().component).toEqual(StockDetailView);
+
+        expect(div.find(Switch).childAt(6).props().component).toEqual(NoMatch);
     });
 });
