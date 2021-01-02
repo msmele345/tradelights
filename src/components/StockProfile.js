@@ -2,10 +2,11 @@ import React from 'react';
 
 export const StockProfile = ({stockMetadata}) => {
 
-    const listItemStyle = {
-        color: '#0EABA0',
-        fontStyle: 'bold'
-    };
+    const formatValues = (number) => {
+        if (!number) {
+            return number * 100
+        }
+    }
 
     return (
         <div className={"stockProfile"}>
@@ -14,10 +15,10 @@ export const StockProfile = ({stockMetadata}) => {
                 <li>Company Name: <span>{stockMetadata.company}</span></li>
                 <li>Volume: <span>{stockMetadata.volume}</span></li>
                 <li>Dividend Yield: <span>{stockMetadata.dividendYield}</span></li>
-                <li> Performance YTD:<span>{stockMetadata.performanceYTD}</span></li>
-                <li>200 Day Simple Moving Avg: <span>{stockMetadata.performanceYTD}</span></li>
-                <li>52 Week High: <span>{stockMetadata.yearlyHigh}</span></li>
-                <li>52 Week Low: <span>{stockMetadata.yearlyLow}</span></li>
+                <li>Performance YTD: <span>{stockMetadata.performanceYTD * 100}%</span></li>
+                <li>200 Day Simple Moving Avg: <span>{stockMetadata.twoHundredDaySimpleMovingAverage}</span></li>
+                {/*<li>52 Week High: <span>{stockMetadata.yearlyHigh * 100}</span></li>*/}
+                {/*<li>52 Week Low: <span>{stockMetadata.yearlyLow * 100}</span></li>*/}
             </ul>
         </div>
     )

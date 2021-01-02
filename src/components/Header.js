@@ -5,7 +5,7 @@ class Header extends Component {
 
     active = {
         fontWeight: "bold",
-        color: "white"
+        color: "#0EABA0"
     };
 
     header = {

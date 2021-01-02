@@ -213,8 +213,12 @@ input[type="submit"],
     align-items: center;
     justify-content: right;
     text-align: center;
-    margin-left: 225px;
-    margin-top: 50px;
+    margin-left: 450px;
+    margin-top: 35px;
+}
+
+.stockProfile {
+    margin-right: 25px;
 }
 
 .stockProfile ul {
@@ -305,6 +309,11 @@ input[type="submit"],
     /*margin-left: 525px;*/
 }
 
+.quoteBanner {
+    color: #0EABA0;
+    margin-right: 25px;
+}
+
 .counter {
     font-weight: 400;
     background: white;
@@ -317,4 +326,20 @@ input[type="submit"],
     z-index: 9999999;
     border: 1px solid rgb(79, 98, 148);
     box-shadow: 0 0 4px rgb(79, 98, 148);
+}
+
+.blink-bg{
+    color: #fff;
+    padding: 10px;
+    display: inline-block;
+    border-radius: 5px;
+    margin-right: 25px;
+    animation: blinkingBackground 2s infinite;
+}
+@keyframes blinkingBackground{
+    0%		{ background-color: #10c018;}
+    25%		{ background-color: #1056c0;}
+    50%		{ background-color: #ef0a1a;}
+    75%		{ background-color: #254878;}
+    100%	        { background-color: #04a1d5;}
 }
