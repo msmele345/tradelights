@@ -167,19 +167,14 @@ input[type="submit"],
 
 
 .tradesForm {
-    width: 75%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: right;
+    justify-content: center;
     text-align: center;
-    margin-left: 200px;
-    margin-top: 50px;
-}
-
-.detailContainer {
-    display: table;
-    margin-top: 10px;
+    margin-left: 150px;
+    margin-top: 25px;
 }
 
 .tradeView {
@@ -198,6 +193,37 @@ input[type="submit"],
     /*justify-content: center;*/
     /*text-align: center;*/
     width: 80%;
+}
+
+.stockDetailContainer {
+    display: block;
+    margin-top: 10px;
+    justify-content: center;
+    margin-right: 400px;
+}
+
+.liveQuoteContainer span {
+    font-size: 20px;
+}
+
+.stocksForm {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: right;
+    text-align: center;
+    margin-left: 225px;
+    margin-top: 50px;
+}
+
+.stockProfile ul {
+    font-size: 15px;
+}
+
+.stockProfile span {
+    font-size: 20px;
+    color: #0EABA0
 }
 
 .register {

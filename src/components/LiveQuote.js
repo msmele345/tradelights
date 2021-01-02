@@ -6,8 +6,8 @@ export const LiveQuote = ({quoteData}) => {
 
     return (
         <div className={"liveQuoteContainer"}>
-            <h1 className={"banner"}>TICKER: {symbol}</h1>
-            <h2><span>BID: {bid} ASK:{ask}</span></h2>
+            <h1 className={"banner"}>{symbol}</h1>
+            <h2><span>BID: {bid} ASK: {ask}</span></h2>
         </div>
     );
 };

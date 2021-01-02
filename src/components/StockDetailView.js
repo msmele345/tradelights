@@ -30,7 +30,7 @@ export const StockDetailView = () => {
 
 
     return (
-        <div className={"tradesForm"}>
+        <div className={"stocksForm"}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <section>
                     <label htmlFor="stock-detail-search">Symbol:</label>

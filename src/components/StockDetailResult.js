@@ -28,7 +28,7 @@ export const StockDetailResult = ({data}) => {
         //component for technical indicator fields
 
         return (
-            <div className={"detailContainer"}>
+            <div className={"stockDetailContainer"}>
                 <LiveQuote quoteData={liveQuote}/>
                 <StockProfile stockMetadata={stockMetadata}/>
             </div>

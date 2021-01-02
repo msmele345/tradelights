@@ -4,20 +4,20 @@ export const StockProfile = ({stockMetadata}) => {
 
     const listItemStyle = {
         color: '#0EABA0',
-        size: 20
+        fontStyle: 'bold'
     };
 
     return (
         <div className={"stockProfile"}>
-            <ul>
-                <li style={listItemStyle}><span>Sector: {stockMetadata.sector}</span></li>
-                <li style={listItemStyle}><span>Company Name: {stockMetadata.company}</span></li>
-                <li style={listItemStyle}><span>Volume: {stockMetadata.volume}</span></li>
-                <li style={listItemStyle}><span>Dividend Yield: {stockMetadata.dividendYield}</span></li>
-                <li style={listItemStyle}><span>Performance YTD: {stockMetadata.performanceYTD}</span></li>
-                <li style={listItemStyle}><span>200 Day Simple Moving Avg: {stockMetadata.performanceYTD}</span></li>
-                <li style={listItemStyle}><span>52 Week High: {stockMetadata.yearlyHigh}</span></li>
-                <li style={listItemStyle}><span>52 Week Low: {stockMetadata.yearlyLow}</span></li>
+            <ul className={"stockDetailProperties"}>
+                <li>Sector: <span>{stockMetadata.sector}</span></li>
+                <li>Company Name: <span>{stockMetadata.company}</span></li>
+                <li>Volume: <span>{stockMetadata.volume}</span></li>
+                <li>Dividend Yield: <span>{stockMetadata.dividendYield}</span></li>
+                <li> Performance YTD:<span>{stockMetadata.performanceYTD}</span></li>
+                <li>200 Day Simple Moving Avg: <span>{stockMetadata.performanceYTD}</span></li>
+                <li>52 Week High: <span>{stockMetadata.yearlyHigh}</span></li>
+                <li>52 Week Low: <span>{stockMetadata.yearlyLow}</span></li>
             </ul>
         </div>
     )
