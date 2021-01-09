@@ -4,9 +4,9 @@ import {TradeView} from "./TradesView";
 import {OptionsView} from "./OptionsView";
 import Register from "../user/Register";
 import Login from "../user/Login";
-import {HomeView} from "./HomeView";
+import {SocialContentView} from "./SocialContentView";
 import Header from "./Header";
-import {HOME_PATH, LOGIN_PATH, OPTIONS_PATH, REGISTER_PATH, STOCKS_PATH, TRADES_PATH} from "../constants/ViewConstants";
+import {POSTS_PATH, LOGIN_PATH, OPTIONS_PATH, REGISTER_PATH, STOCKS_PATH, TRADES_PATH} from "../constants/ViewConstants";
 import {StockDetailView} from "./StockDetailView";
 
 export const NoMatch = ({location}) => <h3>No match for <code>{location.pathname}</code></h3>
@@ -16,7 +16,7 @@ class LandingPage extends React.Component {
     renderRoutes = () => {
         return <div className={"container"} >
             <Switch>
-                <Route exact path={HOME_PATH} component={HomeView}/>
+                <Route exact path={POSTS_PATH} component={SocialContentView}/>
                 <Route exact path={REGISTER_PATH} component={Register}/>
                 <Route exact path={LOGIN_PATH} component={Login}/>
                 <Route exact path={TRADES_PATH} component={TradeView}/>

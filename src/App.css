@@ -238,6 +238,32 @@ input[type="submit"],
     margin-top: 100px;
 }
 
+.socialContent {
+    margin-top: 40px;
+    display: grid;
+    gap: 5rem;
+    max-height: fit-content;
+    grid-template-columns: 1fr 1fr;
+}
+
+.create-post {
+    display: grid;
+    padding-top: 5px;
+    width: 75%;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+
+.postList {
+    display: inline-block;
+    width: 100%;
+    /*height: auto;*/
+    margin-left: 250px;
+    margin-bottom: 200px;
+    margin-top: 20px;
+}
+
 .buttonBlack {
     background: black;
     border: 1px solid white;
@@ -340,6 +366,7 @@ input[type="submit"],
     0%		{ background-color: #10c018;}
     25%		{ background-color: #1056c0;}
     50%		{ background-color: #ef0a1a;}
-    75%		{ background-color: #254878;}
+    75%		{ background-color: #0EABA0;}
     100%	        { background-color: #04a1d5;}
 }
+/*color: #0EABA0*/

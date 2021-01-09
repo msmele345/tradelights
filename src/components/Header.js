@@ -21,7 +21,7 @@ class Header extends Component {
             <div style={this.header} className={"header"}>
 
                 <NavLink exact to="/" activeStyle={this.active}>
-                    Home
+                    Posts
                 </NavLink>
                 <NavLink exact to="/trades" activeStyle={this.active}>
                     Market Overview

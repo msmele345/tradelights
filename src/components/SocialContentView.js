@@ -3,7 +3,7 @@ import PostList from "../post/PostList";
 import appReducer from "../reducers";
 import CreatePost from "../post/CreatePost";
 
-export const HomeView = props => {
+export const SocialContentView = props => {
 
     const [state, dispatch] = useReducer(appReducer, {posts: DEFAULT_POSTS})
     const {posts} = state
@@ -11,7 +11,7 @@ export const HomeView = props => {
     const {username} = (props.location && props.location.userDetails) || {};
 
     return (
-        <div className={".homeContainer"}>
+        <div className={"socialContent"}>
             <CreatePost posts={posts} user={!username ? '' : username} dispatch={dispatch}/>
             <PostList posts={posts} />
         </div>

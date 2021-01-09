@@ -1,32 +1,50 @@
 import React, {useState} from "react";
+import {useForm} from "react-hook-form";
 
 export default function CreatePost({user, posts, dispatch}) {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
 
+    const {register, errors, handleSubmit} = useForm();
+
     const handleTitle = (e) => setTitle(e.target.value);
 
     const handleContent = (e) => setContent(e.target.value);
 
-    const handleCreate = () => dispatch({type: 'CREATE_POST', title, content, author: user});
+    // const handleCreate = () => dispatch({type: 'CREATE_POST', title, content, author: user});
+
+    const onSubmit = async (data) => {
+        console.log("DATA", {data})
+        setTitle(data.title)
+        setContent(data.post)
+        dispatch({type: 'CREATE_POST', title, content, author: user})
+    };
+
 
     const handleUsername = (user) => {
         if(user && user !== '') {
-            return (<h2>WHATS YOUR PLAY OF THE DAY, {user.toUpperCase()}?</h2>);
+            return (<h3>WHATS YOUR PLAY OF THE DAY, {user.toUpperCase()}?</h3>);
         }
-        return (<h2>WHATS YOUR PLAY OF THE DAY?</h2>);
+        return (<h3>WHATS YOUR PLAY OF THE DAY?</h3>);
     }
 
     return (
-        <form onSubmit={e => {e.preventDefault(); handleCreate()}}>
-            <div>
+        <div className={"create-post"}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 {handleUsername(user)}
-                <label htmlFor="create-title">Title:</label>
-                <input type="text" value={title} onChange={handleTitle} name="create-title" id="create-title"/>
-            </div>
-            <input value={content} onChange={handleContent}/>
-            <input type="submit" value="Create Post"/>
-        </form>
+                <section>
+                    <label htmlFor="create-title">Title:</label>
+                    <input name="title" ref={register({required: true})}/>
+                    {errors.title && "A Post Title Is Required"}
+                </section>
+                <section>
+                    <label htmlFor="post">Post:</label>
+                    <input name="post" ref={register({required: true})}/>
+                    {errors.post && "Content is required"}
+                </section>
+                <input type="submit" value="Create Post"/>
+            </form>
+        </div>
     )
 }

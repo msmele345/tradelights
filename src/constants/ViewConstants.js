@@ -9,7 +9,7 @@ export const STOCKS_PATH = "/stocks";
 export const OPTIONS_PATH = "/options";
 export const LOGIN_PATH = "/login";
 export const REGISTER_PATH = "/register";
-export const HOME_PATH = "/";
+export const POSTS_PATH = "/";
 
 export const PATH_TO_VIEW = {
     [TRADES_PATH]: TRADES,

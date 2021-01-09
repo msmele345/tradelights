@@ -1,7 +1,7 @@
 import React, {useReducer, useState} from 'react'
 import {useForm} from "react-hook-form";
 import {postRegistrationData} from "../components/FetchDataService";
-import {HOME_PATH} from "../constants/ViewConstants";
+import {POSTS_PATH} from "../constants/ViewConstants";
 import appReducer from "../reducers";
 import {ServerError} from "../components/ServerError";
 
@@ -23,15 +23,16 @@ const Register = props => {
 
     const onSubmit = async (data) => {
 
-        const response = await postRegistrationData(data.username, data.password, data.email);
-        let username = data.username;
+        const { username, password, email } = data;
+
+        const response = await postRegistrationData(username, password, email);
 
         if (response.error) {
             setErrorMessage(response.error || response.message)
         } else {
             // props.history.push(HOME_PATH)
             dispatch({type: 'REGISTER', username})
-            props.history.push({ pathname: HOME_PATH, userDetails: {username: data.username} });
+            props.history.push({ pathname: POSTS_PATH, userDetails: {username: data.username} });
         }
     }
 
