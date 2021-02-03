@@ -1,12 +1,12 @@
 import React from "react";
 import mockAxios from "axios"
 import {
-    getOptionsData,
+    getOptionsData, getPosts,
     getStockDetails,
     postOptionsData,
     postRegistrationData,
     useAxios
-} from "../components/FetchDataService";
+} from "../components/ApiService";
 import axios from "../__mocks__/axios";
 
 describe("api calls", () => {
@@ -215,6 +215,23 @@ describe("api calls", () => {
 
         expect(actual).toEqual(expected);
         expect(mockAxios.get).toHaveBeenCalledWith(detailsUrl)
+    });
+
+    it("getPosts - calls posts endpoint", async () => {
+
+        const response = {
+           posts: [{id: 1, title: "nice trade", author: "mm", content: "bought 200 shares at 10"}]
+        }
+
+        // mockAxios.get.mockImplementationOnce(() => Promise.resolve(JSON.stringify(response)));
+        mockAxios.get.mockReturnValue(response);
+
+        const postsURL = "http://localhost:8081/api/v1/posts";
+
+        const actual = await getPosts();
+
+        expect(actual).toEqual(response);
+        expect(mockAxios.get).toHaveBeenCalledWith(postsURL);
     });
 });
 

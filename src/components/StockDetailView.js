@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useForm} from "react-hook-form";
-import {getStockDetails} from "./FetchDataService";
+import {getStockDetails} from "./ApiService";
 import Loader from "react-loader-spinner";
 import {LiveQuote} from "./LiveQuote";
 import {StockProfile} from "./StockProfile";

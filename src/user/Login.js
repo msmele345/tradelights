@@ -2,7 +2,6 @@ import React, {useState} from "react";
 
 export default function Login({dispatch}) {
 
-    //
     // const { register, errors, handleSubmit } = useForm();
     // const [errorMessage, setErrorMessage] = useState('');
     const [username, setUsername] = useState('')

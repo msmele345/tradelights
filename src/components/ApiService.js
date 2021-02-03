@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import axios from 'axios';
-import {OPTIONS_URL, STOCK_DETAILS_URL} from "../constants/UrlConstants";
+import {CREATE_POST_URL, OPTIONS_URL, REGISTER_URL, STOCK_DETAILS_URL} from "../constants/UrlConstants";
 
 export const getOptionsData = async (queryData) => {
 
@@ -42,9 +42,41 @@ export const getStockDetails = async (symbol) => {
     return response;
 }
 
+export const getPosts = async () => {
+
+    let response;
+
+    try {
+        response = await axios.get("http://localhost:8081/api/v1/posts")
+    } catch (e) {
+        response = {error: e.error || e.message}
+    }
+    return response;
+}
+
+export const createPost = async (author, title, post) => {
+
+    let response;
+
+    const postData = {
+        author: author,
+        title: title,
+        content: post
+    }
+
+    console.log("POST DATA " + {postData})
+
+
+    try {
+        response = await axios.post(CREATE_POST_URL, postData)
+    } catch (e) {
+        response = {error: e.error || e.message}
+    }
+    return response;
+}
+
 
 export const postRegistrationData = async (username, password, email) => {
-    const queryUrl = `http://localhost:8081/api/v1/users`;
 
     const requestBody = {
         username: username,
@@ -54,7 +86,7 @@ export const postRegistrationData = async (username, password, email) => {
 
     let response;
     try {
-        response = await axios.post(queryUrl, requestBody)
+        response = await axios.post(REGISTER_URL, requestBody)
     } catch (e) {
         console.log({e})
         response = {error: e.error || e.message}

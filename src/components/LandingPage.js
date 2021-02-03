@@ -4,7 +4,7 @@ import {TradeView} from "./TradesView";
 import {OptionsView} from "./OptionsView";
 import Register from "../user/Register";
 import Login from "../user/Login";
-import {SocialContentView} from "./SocialContentView";
+import {SocialsView} from "./SocialsView";
 import Header from "./Header";
 import {POSTS_PATH, LOGIN_PATH, OPTIONS_PATH, REGISTER_PATH, STOCKS_PATH, TRADES_PATH} from "../constants/ViewConstants";
 import {StockDetailView} from "./StockDetailView";
@@ -16,7 +16,7 @@ class LandingPage extends React.Component {
     renderRoutes = () => {
         return <div className={"container"} >
             <Switch>
-                <Route exact path={POSTS_PATH} component={SocialContentView}/>
+                <Route exact path={POSTS_PATH} component={SocialsView}/>
                 <Route exact path={REGISTER_PATH} component={Register}/>
                 <Route exact path={LOGIN_PATH} component={Login}/>
                 <Route exact path={TRADES_PATH} component={TradeView}/>

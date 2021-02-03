@@ -6,7 +6,7 @@ import Register from "../user/Register";
 import Login from "../user/Login";
 import {TradeView} from "../components/TradesView";
 import {OptionsView} from "../components/OptionsView";
-import {SocialContentView} from "../components/SocialContentView";
+import {SocialsView} from "../components/SocialsView";
 import {StockDetailView} from "../components/StockDetailView";
 
 describe('LandingPage ', () => {
@@ -24,7 +24,7 @@ describe('LandingPage ', () => {
 
 
         expect(div.find(Switch).childAt(0).props().path).toEqual("/");
-        expect(div.find(Switch).childAt(0).props().component).toEqual(SocialContentView);
+        expect(div.find(Switch).childAt(0).props().component).toEqual(SocialsView);
 
         expect(div.find(Switch).childAt(1).props().path).toEqual("/register");
         expect(div.find(Switch).childAt(1).props().component).toEqual(Register);

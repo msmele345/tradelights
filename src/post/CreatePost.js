@@ -1,29 +1,32 @@
 import React, {useState} from "react";
 import {useForm} from "react-hook-form";
+import {createPost} from "../components/ApiService"
+import {useHistory} from 'react-router-dom';
 
-export default function CreatePost({user, posts, dispatch}) {
+const CreatePost = ({ props, user} ) => {
 
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    let history = useHistory();
 
     const {register, errors, handleSubmit} = useForm();
 
-    const handleTitle = (e) => setTitle(e.target.value);
-
-    const handleContent = (e) => setContent(e.target.value);
-
-    // const handleCreate = () => dispatch({type: 'CREATE_POST', title, content, author: user});
-
     const onSubmit = async (data) => {
-        console.log("DATA", {data})
         setTitle(data.title)
         setContent(data.post)
-        dispatch({type: 'CREATE_POST', title, content, author: user})
+        const response = await createPost(user, data.title, data.post);
+
+        if (response.error) {
+            setErrorMessage(response.error || response.message)
+        } else {
+            history.goBack();
+        }
+
     };
 
-
     const handleUsername = (user) => {
-        if(user && user !== '') {
+        if (user && user !== '') {
             return (<h3>WHATS YOUR PLAY OF THE DAY, {user.toUpperCase()}?</h3>);
         }
         return (<h3>WHATS YOUR PLAY OF THE DAY?</h3>);
@@ -39,7 +42,7 @@ export default function CreatePost({user, posts, dispatch}) {
                     {errors.title && "A Post Title Is Required"}
                 </section>
                 <section>
-                    <label htmlFor="post">Post:</label>
+                    <label htmlFor="post-content">Post:</label>
                     <input name="post" ref={register({required: true})}/>
                     {errors.post && "Content is required"}
                 </section>
@@ -47,4 +50,6 @@ export default function CreatePost({user, posts, dispatch}) {
             </form>
         </div>
     )
-}
+};
+
+export default CreatePost;

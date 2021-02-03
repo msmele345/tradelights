@@ -1,9 +1,9 @@
 import React from 'react';
 import {screen, render} from "@testing-library/react"
 import {StockDetailView} from "../components/StockDetailView";
-import * as Api from ".././components/FetchDataService";
+import * as Api from "../components/ApiService";
 
-jest.mock(".././components/FetchDataService.js")
+jest.mock(".././components/ApiService.js")
 describe("StockDetailView", () => {
 
     beforeEach(() => {

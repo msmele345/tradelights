@@ -2,7 +2,7 @@ import React, {useReducer, useState} from "react";
 import appReducer from "../reducers";
 import {TradesSearchResult} from "./TradesSearchResult";
 import Loader from "react-loader-spinner";
-import {useAxios} from "./FetchDataService";
+import {useAxios} from "./ApiService";
 import {TRADES_URL} from "../constants/UrlConstants"
 import {ServerError} from "./ServerError";
 

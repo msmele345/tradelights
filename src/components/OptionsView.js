@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Loader from "react-loader-spinner";
 import {useForm} from "react-hook-form";
-import {getOptionsData, postOptionsData} from "./FetchDataService";
+import {getOptionsData, postOptionsData} from "./ApiService";
 import {renderErrors} from "../constants/Utils";
 import {OptionsChain} from "./OptionChain";
 

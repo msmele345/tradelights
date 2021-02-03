@@ -1,6 +1,6 @@
 import React, {useReducer, useState} from 'react'
 import {useForm} from "react-hook-form";
-import {postRegistrationData} from "../components/FetchDataService";
+import {postRegistrationData} from "../components/ApiService";
 import {POSTS_PATH} from "../constants/ViewConstants";
 import appReducer from "../reducers";
 import {ServerError} from "../components/ServerError";
